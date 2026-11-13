@@ -1,0 +1,1727 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#174d3a">
+<title>VastraPass | Retex Panipat</title>
+
+<style>
+:root {
+  --green:#174d3a;
+  --green2:#23674c;
+  --mint:#e2f1e7;
+  --bg:#f3f7f4;
+  --ink:#20352c;
+  --muted:#64756c;
+  --line:#dce7df;
+  --orange:#d58a27;
+  --red:#b83b3b;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.5;
+}
+
+header {
+  background:var(--green);
+  color:white;
+  padding:22px 5%;
+}
+
+header h1 {
+  margin:0;
+  font-size:clamp(25px,5vw,36px);
+}
+
+header p {
+  margin:5px 0 0;
+  color:#d6eadf;
+}
+
+nav {
+  background:var(--green2);
+  display:flex;
+  gap:8px;
+  padding:10px 4%;
+  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+
+nav button {
+  background:transparent;
+  border:0;
+  color:white;
+  padding:11px 13px;
+  border-radius:7px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+nav button.active,
+nav button:hover {
+  background:#174d3a;
+}
+
+main {
+  width:min(1100px,94%);
+  margin:24px auto 40px;
+}
+
+.page { display:none; }
+.page.active { display:block; }
+
+.hero {
+  background:var(--mint);
+  padding:clamp(22px,5vw,42px);
+  border-radius:18px;
+}
+
+.hero h2 {
+  font-size:clamp(25px,5vw,34px);
+  color:var(--green);
+  margin:0 0 12px;
+}
+
+.card {
+  background:white;
+  border-radius:14px;
+  padding:22px;
+  margin:18px 0;
+  box-shadow:0 4px 18px #183c2a0b;
+}
+
+.card h3 {
+  margin-top:0;
+  color:var(--green);
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:12px;
+  margin:18px 0;
+}
+
+.stat {
+  background:white;
+  padding:17px;
+  border-radius:12px;
+  border-left:5px solid #23865c;
+  min-width:0;
+}
+
+.stat strong {
+  display:block;
+  color:var(--green);
+  font-size:clamp(22px,4vw,29px);
+  overflow-wrap:anywhere;
+}
+
+.stat span {
+  font-size:13px;
+  color:var(--muted);
+}
+
+label {
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin:12px 0 5px;
+}
+
+input,select,textarea {
+  width:100%;
+  padding:12px;
+  border:1px solid #cbd8cf;
+  border-radius:8px;
+  background:white;
+  font:inherit;
+  color:var(--ink);
+}
+
+input:focus,select:focus,textarea:focus {
+  outline:2px solid #8bc4a0;
+  border-color:var(--green);
+}
+
+.help {
+  font-size:12px;
+  color:var(--muted);
+  margin:4px 0 8px;
+}
+
+button,.btn {
+  background:#19734e;
+  color:white;
+  border:0;
+  padding:12px 17px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:15px;
+}
+
+button:hover,.btn:hover {
+  background:#105638;
+}
+
+button.secondary {
+  background:#e6efe9;
+  color:var(--green);
+}
+
+button.danger {
+  background:#a83c3c;
+}
+
+.actions {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+
+.notice {
+  padding:12px 14px;
+  border-radius:9px;
+  background:#fff5df;
+  border-left:4px solid var(--orange);
+  font-size:13px;
+}
+
+.success {
+  background:#e7f5eb;
+  border-left-color:#27834f;
+}
+
+.error {
+  background:#fff0f0;
+  border-left-color:var(--red);
+}
+
+.table-wrap { overflow-x:auto; }
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:620px;
+  background:white;
+}
+
+th,td {
+  padding:10px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-size:14px;
+}
+
+th {
+  background:#e8f2eb;
+  color:var(--green);
+}
+
+.passport {
+  border:2px solid #23865c;
+  border-radius:13px;
+  padding:20px;
+  background:#fbfffc;
+}
+
+.passport h3 { font-size:24px; }
+
+.passport .rowline {
+  padding:7px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.small {
+  font-size:12px;
+  color:var(--muted);
+}
+
+#qrcode {
+  background:white;
+  padding:12px;
+  width:max-content;
+  max-width:100%;
+  margin:16px auto;
+}
+
+#qrcode img,#qrcode canvas {
+  max-width:100%;
+  height:auto;
+}
+
+.hidden { display:none!important; }
+
+footer {
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:24px 12px;
+}
+
+footer p { margin:5px; }
+
+hr {
+  border:0;
+  border-top:1px solid var(--line);
+  margin:18px 0;
+}
+
+@media(max-width:600px) {
+  nav { gap:4px; }
+  nav button {
+    font-size:14px;
+    padding:10px 9px;
+  }
+  .card { padding:17px; }
+  .hero { padding:24px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌿 VastraPass</h1>
+  <p>Retex Panipat | From Panipat's Waste to the World's Trust</p>
+</header>
+
+<nav aria-label="Main navigation">
+  <button class="active" data-page="home" onclick="showPage('home')">Home</button>
+  <button data-page="dashboard" onclick="showPage('dashboard')">Dashboard</button>
+  <button data-page="create" onclick="showPage('create')">Create Record</button>
+  <button data-page="records" onclick="showPage('records')">All Records</button>
+  <button data-page="buyer" onclick="showPage('buyer')">Buyer View</button>
+</nav>
+
+<main>
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <h2>Track textile waste. Build trust.</h2>
+
+    <p>
+      VastraPass is a student prototype for recording textile batches,
+      tracking waste and sharing material information through
+      QR-linked digital records.
+    </p>
+
+    <div class="actions">
+      <button onclick="showPage('create')">
+        ＋ Create a Textile Record
+      </button>
+
+      <button class="secondary" onclick="showPage('dashboard')">
+        View Dashboard
+      </button>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🌍 The Problem</h3>
+      <p>
+        Textile waste and production records may be scattered across
+        paper registers, bills and spreadsheets. This makes it harder
+        to organise batch information and understand waste flows.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>💡 Our Solution</h3>
+      <p>
+        Record batch details in one place, track waste quantities,
+        calculate recycled-fibre share and create a QR-linked
+        passport for buyers.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>✨ Prototype Features</h3>
+      <p>
+        • Textile batch records<br>
+        • Waste generated, reused, recycled and disposed<br>
+        • Recycled-fibre calculation<br>
+        • Optional document OCR assistance<br>
+        • QR-linked buyer view<br>
+        • Dashboard and CSV export
+      </p>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    Prototype note: records are saved in this browser only.
+    This demo is not a certification system and does not
+    independently verify factory claims.
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+
+  <h2>Factory Dashboard</h2>
+
+  <p class="small">
+    Summary of records saved on this device/browser.
+  </p>
+
+  <div class="stats">
+
+    <div class="stat">
+      <strong id="statBatches">0</strong>
+      <span>Total batches</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statGenerated">0 kg</strong>
+      <span>Waste generated</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statRecycled">0 kg</strong>
+      <span>Waste recycled</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statRate">0%</strong>
+      <span>Waste recycling rate</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statFibre">0%</strong>
+      <span>Weighted recycled-fibre share</span>
+    </div>
+
+    <div class="stat">
+      <strong id="statEnergy">0 kWh</strong>
+      <span>Recorded energy use</span>
+    </div>
+
+  </div>
+
+  <div class="card">
+    <h3>Waste summary</h3>
+    <div id="wasteSummary">No records yet.</div>
+  </div>
+
+  <div class="actions">
+    <button onclick="showPage('create')">＋ Add record</button>
+    <button class="secondary" onclick="exportCSV()">
+      Download CSV report
+    </button>
+  </div>
+
+</section>
+
+
+<!-- CREATE RECORD -->
+<section id="create" class="page">
+
+  <h2>Create a Textile Batch Record</h2>
+
+  <div class="card">
+
+    <p class="small">
+      Enter the information from a factory batch register
+      or supporting document. Fields marked * are required.
+    </p>
+
+    <form id="batchForm">
+
+      <div class="grid">
+
+        <div>
+          <label for="factory">Factory / unit name *</label>
+          <input id="factory" required maxlength="100"
+                 placeholder="e.g. Panipat Textile Unit">
+        </div>
+
+        <div>
+          <label for="batchId">Batch ID *</label>
+          <input id="batchId" required maxlength="40"
+                 placeholder="e.g. RETEX-001">
+        </div>
+
+        <div>
+          <label for="product">Product / batch description *</label>
+          <input id="product" required maxlength="100"
+                 placeholder="e.g. Recycled cotton yarn">
+        </div>
+
+        <div>
+          <label for="material">Main material type *</label>
+          <select id="material" required>
+            <option value="">Select material</option>
+            <option>Cotton</option>
+            <option>Polyester</option>
+            <option>Wool</option>
+            <option>Viscose</option>
+            <option>Mixed fibre</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="totalFibre">Total fibre in product (kg) *</label>
+          <input id="totalFibre" type="number" min="0.01"
+                 step="0.01" required placeholder="100">
+        </div>
+
+        <div>
+          <label for="recycledFibre">Recycled fibre in product (kg) *</label>
+          <input id="recycledFibre" type="number" min="0"
+                 step="0.01" required placeholder="70">
+        </div>
+
+        <div>
+          <label for="productionDate">Production date *</label>
+          <input id="productionDate" type="date" required>
+        </div>
+
+        <div>
+          <label for="energy">Electricity used for this batch (kWh)</label>
+          <input id="energy" type="number" min="0"
+                 step="0.01" placeholder="e.g. 45">
+        </div>
+
+      </div>
+
+      <hr>
+
+      <h3>Textile waste tracking</h3>
+
+      <p class="small">
+        Enter waste quantities for this batch or reporting period.
+        All quantities are in kilograms.
+      </p>
+
+      <div class="grid">
+
+        <div>
+          <label for="wasteGenerated">Waste generated (kg)</label>
+          <input id="wasteGenerated" type="number" min="0"
+                 step="0.01" value="0">
+        </div>
+
+        <div>
+          <label for="wasteReused">Waste reused (kg)</label>
+          <input id="wasteReused" type="number" min="0"
+                 step="0.01" value="0">
+        </div>
+
+        <div>
+          <label for="wasteRecycled">Waste recycled (kg)</label>
+          <input id="wasteRecycled" type="number" min="0"
+                 step="0.01" value="0">
+        </div>
+
+        <div>
+          <label for="wasteDisposed">Waste disposed (kg)</label>
+          <input id="wasteDisposed" type="number" min="0"
+                 step="0.01" value="0">
+        </div>
+
+        <div>
+          <label for="recordReference">Supporting record reference</label>
+          <input id="recordReference" maxlength="100"
+                 placeholder="e.g. Waste register page 12">
+        </div>
+
+        <div>
+          <label for="notes">Notes (optional)</label>
+          <input id="notes" maxlength="250"
+                 placeholder="Any extra batch information">
+        </div>
+
+      </div>
+
+      <p class="help">
+        Validation: reused + recycled + disposed waste must not
+        exceed waste generated.
+      </p>
+
+      <div class="actions">
+        <button type="submit">Save Record & Create Passport</button>
+        <button type="reset" class="secondary">Clear form</button>
+      </div>
+
+      <p id="formMessage" class="notice hidden" role="status"></p>
+
+    </form>
+  </div>
+
+
+  <!-- OCR FEATURE -->
+  <div class="card">
+
+    <h3>Optional: Read a document with OCR</h3>
+
+    <p class="small">
+      Choose a clear photo of a printed or handwritten record.
+      OCR attempts to read the text. You must check it and
+      enter/correct the values in the form yourself.
+      OCR may make mistakes.
+    </p>
+
+    <label for="ocrFile">Choose a record photo</label>
+
+    <input id="ocrFile" type="file" accept="image/*">
+
+    <div class="actions">
+      <button type="button" id="ocrButton" onclick="runOCR()">
+        Read text from image
+      </button>
+    </div>
+
+    <p id="ocrStatus" class="small" aria-live="polite"></p>
+
+    <textarea id="ocrText" rows="5"
+      placeholder="Recognised text will appear here for you to review."
+      readonly></textarea>
+
+    <p class="help">
+      OCR requires an internet connection to load the recognition library.
+      No automatic values are saved from the image.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ALL RECORDS -->
+<section id="records" class="page">
+
+  <h2>Saved Textile Records</h2>
+
+  <div class="card">
+
+    <div class="actions">
+
+      <button class="secondary" onclick="exportCSV()">
+        Download CSV
+      </button>
+
+      <button class="danger" onclick="clearAllRecords()">
+        Delete all records on this device
+      </button>
+
+    </div>
+
+    <div class="table-wrap">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Batch ID</th>
+            <th>Factory</th>
+            <th>Product</th>
+            <th>Waste generated</th>
+            <th>Recycled waste</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="recordsBody"></tbody>
+
+      </table>
+
+    </div>
+
+    <p id="emptyRecords" class="small">
+      No records saved yet.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- DIGITAL PASSPORT -->
+<section id="result" class="page">
+
+  <h2>Digital Textile Passport</h2>
+
+  <div class="card">
+
+    <div id="passportDetails" class="passport"></div>
+
+    <h3 style="text-align:center">
+      Scan to view this passport
+    </h3>
+
+    <div id="qrcode"></div>
+
+    <p class="small" style="text-align:center">
+      The QR code opens a buyer view using the information
+      encoded in its link.
+    </p>
+
+    <div class="actions">
+
+      <button onclick="copyPassportLink()">
+        Copy passport link
+      </button>
+
+      <button class="secondary" onclick="window.print()">
+        Print passport
+      </button>
+
+      <button class="secondary" onclick="showPage('dashboard')">
+        Back to dashboard
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BUYER VIEW -->
+<section id="buyer" class="page">
+
+  <h2>Buyer Passport View</h2>
+
+  <div class="card">
+    <div id="buyerDetails">
+      <p>
+        No passport information loaded.
+        Create a record and open its QR link to view it.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+  <p><strong>VastraPass | Retex Panipat</strong></p>
+
+  <p>
+    Student prototype for textile waste tracking
+    and digital traceability.
+  </p>
+
+  <p class="small" style="color:#d6eadf">
+    Demo data is user-entered and has not been independently verified.
+  </p>
+</footer>
+
+
+<!-- QR CODE LIBRARY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+"use strict";
+
+const STORAGE_KEY = "vastraPassRecords_v2";
+
+let records = loadRecords();
+let currentPassportLink = "";
+
+
+/* LOAD SAVED RECORDS */
+
+function loadRecords() {
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem(STORAGE_KEY) || "[]"
+    );
+
+    return Array.isArray(saved) ? saved : [];
+
+  } catch(error) {
+    return [];
+  }
+}
+
+
+/* SAVE RECORDS */
+
+function saveRecords() {
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(records)
+    );
+
+    return true;
+
+  } catch(error) {
+
+    alert(
+      "Could not save records in this browser. Storage may be full or disabled."
+    );
+
+    return false;
+  }
+}
+
+
+/* PAGE NAVIGATION */
+
+function showPage(id) {
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const target = document.getElementById(id);
+
+  if(target) {
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll("nav button[data-page]").forEach(button => {
+
+    button.classList.toggle(
+      "active",
+      button.dataset.page === id
+    );
+
+  });
+
+  if(id === "dashboard") {
+    updateDashboard();
+  }
+
+  if(id === "records") {
+    updateRecordsTable();
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* HELPER FUNCTIONS */
+
+function numberValue(id) {
+
+  const value = Number(
+    document.getElementById(id).value
+  );
+
+  return Number.isFinite(value) ? value : 0;
+}
+
+
+function formatKg(value) {
+
+  return Number(value || 0).toLocaleString(
+    undefined,
+    {maximumFractionDigits:2}
+  ) + " kg";
+}
+
+
+function safeText(value) {
+  return String(value == null ? "" : value);
+}
+
+
+function addDetail(parent,label,value) {
+
+  const line = document.createElement("div");
+  line.className = "rowline";
+
+  const strong = document.createElement("strong");
+  strong.textContent = label + ": ";
+
+  line.appendChild(strong);
+
+  line.appendChild(
+    document.createTextNode(safeText(value))
+  );
+
+  parent.appendChild(line);
+}
+
+
+/* DASHBOARD CALCULATIONS */
+
+function updateDashboard() {
+
+  const totalGenerated = records.reduce(
+    (sum,r) => sum + r.wasteGenerated, 0
+  );
+
+  const totalRecycled = records.reduce(
+    (sum,r) => sum + r.wasteRecycled, 0
+  );
+
+  const totalEnergy = records.reduce(
+    (sum,r) => sum + r.energy, 0
+  );
+
+  const totalFibre = records.reduce(
+    (sum,r) => sum + r.totalFibre, 0
+  );
+
+  const recycledFibre = records.reduce(
+    (sum,r) => sum + r.recycledFibre, 0
+  );
+
+  const rate = totalGenerated > 0
+    ? totalRecycled / totalGenerated * 100
+    : 0;
+
+  const fibreRate = totalFibre > 0
+    ? recycledFibre / totalFibre * 100
+    : 0;
+
+
+  document.getElementById("statBatches").textContent =
+    records.length;
+
+  document.getElementById("statGenerated").textContent =
+    formatKg(totalGenerated);
+
+  document.getElementById("statRecycled").textContent =
+    formatKg(totalRecycled);
+
+  document.getElementById("statRate").textContent =
+    rate.toFixed(1) + "%";
+
+  document.getElementById("statFibre").textContent =
+    fibreRate.toFixed(1) + "%";
+
+  document.getElementById("statEnergy").textContent =
+    totalEnergy.toLocaleString(
+      undefined,
+      {maximumFractionDigits:2}
+    ) + " kWh";
+
+
+  const reused = records.reduce(
+    (sum,r) => sum + r.wasteReused, 0
+  );
+
+  const disposed = records.reduce(
+    (sum,r) => sum + r.wasteDisposed, 0
+  );
+
+
+  document.getElementById("wasteSummary").textContent =
+
+    records.length
+
+      ? "Reused: " + formatKg(reused) +
+        " | Recycled: " + formatKg(totalRecycled) +
+        " | Disposed: " + formatKg(disposed)
+
+      : "No records yet. Create your first textile batch record.";
+}
+
+
+/* RECORDS TABLE */
+
+function updateRecordsTable() {
+
+  const body = document.getElementById("recordsBody");
+
+  body.replaceChildren();
+
+  document.getElementById("emptyRecords").classList.toggle(
+    "hidden",
+    records.length > 0
+  );
+
+
+  records.forEach(record => {
+
+    const row = document.createElement("tr");
+
+    [
+      record.batchId,
+      record.factory,
+      record.product,
+      formatKg(record.wasteGenerated),
+      formatKg(record.wasteRecycled)
+
+    ].forEach(value => {
+
+      const cell = document.createElement("td");
+
+      cell.textContent = safeText(value);
+
+      row.appendChild(cell);
+
+    });
+
+
+    const actionCell = document.createElement("td");
+
+    const viewButton = document.createElement("button");
+
+    viewButton.textContent = "View";
+
+    viewButton.onclick = () => displayPassport(record);
+
+    actionCell.appendChild(viewButton);
+
+    row.appendChild(actionCell);
+
+    body.appendChild(row);
+
+  });
+
+}
+
+
+/* FORM MESSAGE */
+
+function showMessage(message,isError) {
+
+  const box = document.getElementById("formMessage");
+
+  box.textContent = message;
+
+  box.classList.remove(
+    "hidden",
+    "error",
+    "success"
+  );
+
+  box.classList.add(
+    isError ? "error" : "success"
+  );
+}
+
+
+/* CREATE AND SAVE A BATCH */
+
+document.getElementById("batchForm").addEventListener(
+  "submit",
+  function(event) {
+
+    event.preventDefault();
+
+    const factory =
+      document.getElementById("factory").value.trim();
+
+    const batchId =
+      document.getElementById("batchId").value.trim();
+
+    const product =
+      document.getElementById("product").value.trim();
+
+    const material =
+      document.getElementById("material").value;
+
+    const totalFibre = numberValue("totalFibre");
+
+    const recycledFibre = numberValue("recycledFibre");
+
+    const productionDate =
+      document.getElementById("productionDate").value;
+
+    const energy = numberValue("energy");
+
+    const wasteGenerated = numberValue("wasteGenerated");
+
+    const wasteReused = numberValue("wasteReused");
+
+    const wasteRecycled = numberValue("wasteRecycled");
+
+    const wasteDisposed = numberValue("wasteDisposed");
+
+    const recordReference =
+      document.getElementById("recordReference").value.trim();
+
+    const notes =
+      document.getElementById("notes").value.trim();
+
+
+    if(
+      !factory ||
+      !batchId ||
+      !product ||
+      !material ||
+      !productionDate
+    ) {
+
+      showMessage(
+        "Please complete all required fields.",
+        true
+      );
+
+      return;
+    }
+
+
+    if(
+      totalFibre <= 0 ||
+      recycledFibre < 0 ||
+      recycledFibre > totalFibre
+    ) {
+
+      showMessage(
+        "Check fibre weights. Recycled fibre must be between zero and total fibre weight.",
+        true
+      );
+
+      return;
+    }
+
+
+    if(
+      [
+        energy,
+        wasteGenerated,
+        wasteReused,
+        wasteRecycled,
+        wasteDisposed
+      ].some(v => v < 0)
+    ) {
+
+      showMessage(
+        "Energy and waste quantities cannot be negative.",
+        true
+      );
+
+      return;
+    }
+
+
+    const wasteHandled =
+      wasteReused + wasteRecycled + wasteDisposed;
+
+
+    if(wasteHandled > wasteGenerated + 0.0001) {
+
+      showMessage(
+        "Reused + recycled + disposed waste cannot exceed waste generated.",
+        true
+      );
+
+      return;
+    }
+
+
+    if(
+      records.some(
+        r => r.batchId.toLowerCase() === batchId.toLowerCase()
+      )
+    ) {
+
+      showMessage(
+        "This Batch ID already exists. Please use a unique ID.",
+        true
+      );
+
+      return;
+    }
+
+
+    const record = {
+
+      factory,
+      batchId,
+      product,
+      material,
+
+      totalFibre,
+      recycledFibre,
+
+      recycledFibrePercent:
+        recycledFibre / totalFibre * 100,
+
+      productionDate,
+      energy,
+
+      wasteGenerated,
+      wasteReused,
+      wasteRecycled,
+      wasteDisposed,
+
+      recordReference,
+      notes,
+
+      createdAt:new Date().toISOString()
+
+    };
+
+
+    records.push(record);
+
+    if(!saveRecords()) {
+      records.pop();
+      return;
+    }
+
+
+    this.reset();
+
+
+    [
+      "wasteGenerated",
+      "wasteReused",
+      "wasteRecycled",
+      "wasteDisposed"
+    ].forEach(id => {
+
+      document.getElementById(id).value = "0";
+
+    });
+
+
+    displayPassport(record);
+
+  }
+);
+
+
+/* DIGITAL TEXTILE PASSPORT */
+
+function displayPassport(record) {
+
+  const box = document.getElementById("passportDetails");
+
+  box.replaceChildren();
+
+  const heading = document.createElement("h3");
+
+  heading.textContent =
+    "🌿 VastraPass Digital Textile Passport";
+
+  box.appendChild(heading);
+
+
+  addDetail(box,"Factory",record.factory);
+
+  addDetail(box,"Batch ID",record.batchId);
+
+  addDetail(box,"Product",record.product);
+
+  addDetail(box,"Material",record.material);
+
+  addDetail(box,"Production date",record.productionDate);
+
+  addDetail(box,"Total fibre",formatKg(record.totalFibre));
+
+  addDetail(box,"Recycled fibre",formatKg(record.recycledFibre));
+
+  addDetail(
+    box,
+    "Recycled fibre share",
+    record.recycledFibrePercent.toFixed(2) + "%"
+  );
+
+  addDetail(box,"Waste generated",formatKg(record.wasteGenerated));
+
+  addDetail(box,"Waste reused",formatKg(record.wasteReused));
+
+  addDetail(box,"Waste recycled",formatKg(record.wasteRecycled));
+
+  addDetail(box,"Waste disposed",formatKg(record.wasteDisposed));
+
+  addDetail(box,"Electricity used",record.energy + " kWh");
+
+  addDetail(
+    box,
+    "Supporting reference",
+    record.recordReference || "Not provided"
+  );
+
+  if(record.notes) {
+    addDetail(box,"Notes",record.notes);
+  }
+
+
+  const note = document.createElement("p");
+
+  note.className = "notice";
+
+  note.textContent =
+    "Demo record: information entered by the user. It has not been independently verified and is not an official certification.";
+
+  box.appendChild(note);
+
+
+  createQR(record);
+
+  showPage("result");
+
+}
+
+
+/* GENERATE QR CODE */
+
+function createQR(record) {
+
+  const qrBox = document.getElementById("qrcode");
+
+  qrBox.replaceChildren();
+
+  const params = new URLSearchParams();
+
+  params.set(
+    "passport",
+    btoa(
+      unescape(
+        encodeURIComponent(JSON.stringify(record))
+      )
+    )
+  );
+
+  const url = new URL(window.location.href);
+
+  url.search = params.toString();
+
+  url.hash = "buyer";
+
+  currentPassportLink = url.toString();
+
+
+  if(typeof QRCode === "undefined") {
+
+    qrBox.textContent =
+      "QR library did not load. Check your internet connection and refresh.";
+
+    return;
+  }
+
+
+  new QRCode(qrBox, {
+
+    text:currentPassportLink,
+
+    width:200,
+
+    height:200,
+
+    correctLevel:QRCode.CorrectLevel.M
+
+  });
+
+}
+
+
+/* COPY PASSPORT LINK */
+
+function copyPassportLink() {
+
+  if(!currentPassportLink) {
+
+    alert("Create a passport first.");
+
+    return;
+  }
+
+
+  if(navigator.clipboard && window.isSecureContext) {
+
+    navigator.clipboard.writeText(currentPassportLink)
+
+      .then(() => alert("Passport link copied."))
+
+      .catch(
+        () => prompt("Copy this link:",currentPassportLink)
+      );
+
+  } else {
+
+    prompt(
+      "Copy this passport link:",
+      currentPassportLink
+    );
+
+  }
+
+}
+
+
+/* BUYER VIEW FROM QR LINK */
+
+function loadBuyerFromURL() {
+
+  const params = new URLSearchParams(window.location.search);
+
+  const encoded = params.get("passport");
+
+  if(!encoded) return;
+
+
+  try {
+
+    const record = JSON.parse(
+      decodeURIComponent(
+        escape(atob(encoded))
+      )
+    );
+
+
+    if(!record || !record.batchId || !record.product) {
+      throw new Error("Invalid data");
+    }
+
+
+    const box = document.getElementById("buyerDetails");
+
+    box.replaceChildren();
+
+    const heading = document.createElement("h3");
+
+    heading.textContent =
+      "VastraPass | Buyer Information";
+
+    box.appendChild(heading);
+
+
+    [
+      "factory",
+      "batchId",
+      "product",
+      "material",
+      "productionDate"
+    ].forEach(key => {
+
+      addDetail(
+        box,
+        key.replace(/([A-Z])/g," $1")
+           .replace(/^./,s => s.toUpperCase()),
+        record[key] || ""
+      );
+
+    });
+
+
+    addDetail(
+      box,
+      "Total fibre",
+      formatKg(record.totalFibre)
+    );
+
+    addDetail(
+      box,
+      "Recycled fibre",
+      formatKg(record.recycledFibre)
+    );
+
+    addDetail(
+      box,
+      "Recycled fibre share",
+      Number(record.recycledFibrePercent || 0).toFixed(2) + "%"
+    );
+
+    addDetail(
+      box,
+      "Waste generated",
+      formatKg(record.wasteGenerated)
+    );
+
+    addDetail(
+      box,
+      "Waste reused",
+      formatKg(record.wasteReused)
+    );
+
+    addDetail(
+      box,
+      "Waste recycled",
+      formatKg(record.wasteRecycled)
+    );
+
+    addDetail(
+      box,
+      "Waste disposed",
+      formatKg(record.wasteDisposed)
+    );
+
+    addDetail(
+      box,
+      "Electricity used",
+      record.energy + " kWh"
+    );
+
+
+    const note = document.createElement("p");
+
+    note.className = "notice";
+
+    note.textContent =
+      "Information supplied by the batch creator. This QR-linked demo record is not independently verified or an official certification.";
+
+    box.appendChild(note);
+
+
+    showPage("buyer");
+
+
+  } catch(error) {
+
+    document.getElementById("buyerDetails").textContent =
+      "This passport link is invalid or incomplete.";
+
+    showPage("buyer");
+
+  }
+
+}
+
+
+/* EXPORT RECORDS TO CSV */
+
+function exportCSV() {
+
+  if(records.length === 0) {
+
+    alert("There are no records to export yet.");
+
+    return;
+  }
+
+
+  const columns = [
+
+    "factory",
+    "batchId",
+    "product",
+    "material",
+    "productionDate",
+    "totalFibre",
+    "recycledFibre",
+    "recycledFibrePercent",
+    "wasteGenerated",
+    "wasteReused",
+    "wasteRecycled",
+    "wasteDisposed",
+    "energy",
+    "recordReference",
+    "notes"
+
+  ];
+
+
+  const escapeCSV = value =>
+
+    '"' + safeText(value).replace(/"/g,'""') + '"';
+
+
+  const csv = [
+
+    columns.join(","),
+
+    ...records.map(record =>
+
+      columns.map(key => escapeCSV(record[key])).join(",")
+
+    )
+
+  ].join("\r\n");
+
+
+  const blob = new Blob(
+    [csv],
+    {type:"text/csv;charset=utf-8;"}
+  );
+
+
+  const link = document.createElement("a");
+
+  const objectURL = URL.createObjectURL(blob);
+
+  link.href = objectURL;
+
+  link.download = "vastrapass-records.csv";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+  URL.revokeObjectURL(objectURL);
+
+}
+
+
+/* DELETE ALL RECORDS */
+
+function clearAllRecords() {
+
+  if(
+    !confirm(
+      "Delete all VastraPass records saved in this browser? This cannot be undone."
+    )
+  ) {
+    return;
+  }
+
+
+  records = [];
+
+  saveRecords();
+
+  updateRecordsTable();
+
+  updateDashboard();
+
+}
+
+
+/* OCR DOCUMENT READING */
+
+async function runOCR() {
+
+  const fileInput = document.getElementById("ocrFile");
+
+  const status = document.getElementById("ocrStatus");
+
+  const output = document.getElementById("ocrText");
+
+  const file = fileInput.files && fileInput.files[0];
+
+
+  if(!file) {
+
+    status.textContent =
+      "Please choose an image first.";
+
+    return;
+  }
+
+
+  if(!file.type.startsWith("image/")) {
+
+    status.textContent =
+      "Please select an image file.";
+
+    return;
+  }
+
+
+  const button = document.getElementById("ocrButton");
+
+  button.disabled = true;
+
+  status.textContent =
+    "Loading OCR engine. This may take a little time and requires internet access...";
+
+
+  try {
+
+    if(typeof Tesseract === "undefined") {
+
+      await loadScript(
+        "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"
+      );
+
+    }
+
+
+    status.textContent = "Reading the image...";
+
+
+    const result = await Tesseract.recognize(
+
+      file,
+
+      "eng",
+
+      {
+        logger:message => {
+
+          if(message && message.status) {
+
+            status.textContent =
+              message.status +
+              (
+                message.progress
+                  ? " " + Math.round(message.progress * 100) + "%"
+                  : ""
+              );
+
+          }
+
+        }
+      }
+
+    );
+
+
+    output.value =
+      result.data.text ||
+      "No readable text found. Try a clearer image.";
+
+
+    status.textContent =
+      "OCR finished. Please check every value manually before entering it in the form.";
+
+
+  } catch(error) {
+
+    status.textContent =
+      "OCR could not run. Check your internet connection or try a clearer image.";
+
+  } finally {
+
+    button.disabled = false;
+
+  }
+
+}
+
+
+/* LOAD EXTERNAL SCRIPT */
+
+function loadScript(src) {
+
+  return new Promise((resolve,reject) => {
+
+    const script = document.createElement("script");
+
+    script.src = src;
+
+    script.onload = resolve;
+
+    script.onerror = reject;
+
+    document.head.appendChild(script);
+
+  });
+
+}
+
+
+/* INITIALISE WEBSITE */
+
+updateDashboard();
+
+updateRecordsTable();
+
+loadBuyerFromURL();
+
+</script>
+
+</body>
+</html>
